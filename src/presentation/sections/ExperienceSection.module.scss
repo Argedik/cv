@@ -1,0 +1,216 @@
+.experience {
+  position: relative;
+  padding: 8rem 0;
+  overflow: hidden;
+}
+
+.experience::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(
+    circle,
+    rgba(30, 64, 175, 0.08) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.timeline {
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--accent) 10%,
+    var(--accent) 90%,
+    transparent
+  );
+}
+
+.timelineItem {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.timelineItem:nth-child(odd) .timelineContent {
+  margin-right: calc(50% + 40px);
+  text-align: right;
+}
+
+.timelineItem:nth-child(odd) .cardHeader {
+  flex-direction: row-reverse;
+}
+
+.timelineItem:nth-child(odd) .technologies {
+  justify-content: flex-end;
+}
+
+.timelineItem:nth-child(even) .timelineContent {
+  margin-left: calc(50% + 40px);
+}
+
+.timelineDot {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent);
+  z-index: 1;
+}
+
+.timelineContent {
+  position: relative;
+  flex: 0 0 auto;
+  width: calc(50% - 60px);
+}
+
+.cardGlow {
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  border-radius: 17px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.timelineContent:hover .cardGlow {
+  opacity: 1;
+}
+
+.card {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.timelineContent:hover .card {
+  border-color: transparent;
+  transform: translateY(-5px);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.companyInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.company {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.role {
+  font-size: 0.875rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.period {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.description {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--accent);
+  border-radius: 20px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timelineDot {
+    left: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .timelineItem:nth-child(odd) .timelineContent,
+  .timelineItem:nth-child(even) .timelineContent {
+    margin-left: 60px;
+    margin-right: 0;
+    text-align: left;
+    width: calc(100% - 60px);
+  }
+
+  .timelineItem:nth-child(odd) .cardHeader {
+    flex-direction: row;
+  }
+
+  .timelineItem:nth-child(odd) .technologies {
+    justify-content: flex-start;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
