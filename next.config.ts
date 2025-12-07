@@ -1,8 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "export",        // ⬅️ BURAYA (root seviyesine)
   images: {
-    unoptimized: true,
+    unoptimized: true,     // ⬅️ sadece images ayarları burada kalacak
   },
 };
 

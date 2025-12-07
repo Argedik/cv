@@ -1,22 +1,29 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 import ThemeToggle from '../ui/ThemeToggle';
+import LanguageToggle from '../ui/LanguageToggle';
+import { useLanguage } from '@/domain/context/LanguageContext';
 import styles from './Navbar.module.scss';
 
-const navLinks = [
-  { id: 'hero', label: 'Ana Sayfa' },
-  { id: 'experience', label: 'Tecrübeler' },
-  { id: 'projects', label: 'Projeler' },
-  { id: 'contact', label: 'İletişim' },
-];
-
 export default function Navbar() {
+  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+
+  const navLinks = useMemo(
+    () => [
+      { id: 'hero', label: t('nav.home') },
+      { id: 'experience', label: t('nav.experience') },
+      { id: 'projects', label: t('nav.projects') },
+      { id: 'contact', label: t('nav.contact') },
+    ],
+    [t]
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,7 +73,7 @@ export default function Navbar() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [navLinks]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -95,6 +102,28 @@ export default function Navbar() {
         transition={{ duration: 0.6 }}
       >
         <div className={styles.container}>
+          {/* Logo */}
+          <motion.a
+            href="#hero"
+            className={styles.logo}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('hero');
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Image
+              src="/logo/logo.png"
+              alt="Logo"
+              width={45}
+              height={45}
+              className={styles.logoImage}
+              priority
+              unoptimized
+            />
+          </motion.a>
+
           {/* Desktop Navigation */}
           <ul className={styles.navLinks}>
             {navLinks.map((link) => (
@@ -123,6 +152,7 @@ export default function Navbar() {
           </ul>
 
           <div className={styles.rightActions}>
+            <LanguageToggle />
             <ThemeToggle />
             {/* Mobile Menu Button */}
             <button

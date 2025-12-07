@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Briefcase, Calendar } from 'lucide-react';
+import { Briefcase } from 'lucide-react';
 import { Experience } from '@/domain/types';
+import { useLanguage } from '@/domain/context/LanguageContext';
 import SectionTitle from '../components/ui/SectionTitle';
 import styles from './ExperienceSection.module.scss';
 
@@ -13,10 +14,12 @@ interface ExperienceSectionProps {
 export default function ExperienceSection({
   experiences,
 }: ExperienceSectionProps) {
+  const { t } = useLanguage();
+
   return (
     <section id="experience" className={styles.experience}>
       <div className={styles.container}>
-        <SectionTitle title="Tecrübelerim" subtitle="Kariyer Yolculuğum" />
+        <SectionTitle title={t('exp.title')} subtitle={t('exp.subtitle')} />
 
         <div className={styles.timeline}>
           {experiences.map((exp, index) => (
@@ -36,15 +39,23 @@ export default function ExperienceSection({
                 <div className={styles.card}>
                   <div className={styles.cardHeader}>
                     <div className={styles.companyInfo}>
-                      <h3 className={styles.company}>{exp.company}</h3>
-                      <span className={styles.role}>{exp.role}</span>
+                      <h3 className={styles.company}>
+                        {exp.id === '3' || exp.id === '4' 
+                          ? t(`exp.${exp.id}.company`) 
+                          : exp.company}
+                      </h3>
+                      <span className={styles.role}>{t(`exp.${exp.id}.role`)}</span>
                     </div>
                     <div className={styles.period}>
-                      <Calendar size={14} />
-                      <span>{exp.period}</span>
+                      <div className={styles.periodRange}>
+                        {t(`exp.${exp.id}.periodStart`)} - {t(`exp.${exp.id}.periodEnd`)}
+                      </div>
+                      <div className={styles.periodDuration}>
+                        {t(`exp.${exp.id}.periodDuration`)}
+                      </div>
                     </div>
                   </div>
-                  <p className={styles.description}>{exp.description}</p>
+                  <p className={styles.description}>{t(`exp.${exp.id}.description`)}</p>
                   <div className={styles.technologies}>
                     {exp.technologies.map((tech) => (
                       <span key={tech} className={styles.tech}>

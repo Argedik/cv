@@ -25,6 +25,27 @@
   position: relative;
 }
 
+.logo {
+  position: absolute;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.logoImage {
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.logo:hover .logoImage {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+}
+
 .navLinks {
   display: flex;
   gap: 2rem;
@@ -128,12 +149,41 @@
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    padding: 1.25rem 0;
+  }
+
+  .navbar.scrolled {
+    padding: 1rem 0;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+    justify-content: space-between;
+  }
+
   .navLinks {
     display: none;
   }
 
   .mobileMenuButton {
     display: block;
+  }
+
+  .logo {
+    left: auto;
+    position: relative;
+    margin: 0;
+  }
+
+  .logoImage {
+    width: 36px;
+    height: 36px;
+  }
+
+  .rightActions {
+    position: relative;
+    right: auto;
   }
 }
 

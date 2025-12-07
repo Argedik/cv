@@ -42,6 +42,40 @@
   animation: float 12s ease-in-out infinite reverse;
 }
 
+/* English - Softer background */
+[lang='en'] .gradientOrb1 {
+  background: radial-gradient(
+    circle,
+    rgba(59, 130, 246, 0.08) 0%,
+    transparent 70%
+  );
+}
+
+[lang='en'] .gradientOrb2 {
+  background: radial-gradient(
+    circle,
+    rgba(30, 64, 175, 0.08) 0%,
+    transparent 70%
+  );
+}
+
+/* Arabic - Green theme */
+[lang='ar'] .gradientOrb1 {
+  background: radial-gradient(
+    circle,
+    rgba(16, 185, 129, 0.15) 0%,
+    transparent 70%
+  );
+}
+
+[lang='ar'] .gradientOrb2 {
+  background: radial-gradient(
+    circle,
+    rgba(5, 150, 105, 0.15) 0%,
+    transparent 70%
+  );
+}
+
 .gridPattern {
   position: absolute;
   inset: 0;
@@ -178,6 +212,25 @@
   border-color: rgba(37, 99, 235, 0.12);
 }
 
+/* Arabic - Green theme for location */
+[lang='ar'] .location {
+  border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+[lang='ar'] .location:hover {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.15);
+}
+
+[lang='ar'] .location:active {
+  background: rgba(16, 185, 129, 0.12);
+}
+
+[lang='ar'][data-theme='light'] .location:hover {
+  background: rgba(5, 150, 105, 0.06);
+  border-color: rgba(5, 150, 105, 0.12);
+}
+
 /* Contact Info */
 .contactInfo {
   display: flex;
@@ -224,6 +277,21 @@
 [data-theme='light'] .contactItem:hover {
   background: rgba(37, 99, 235, 0.06);
   border-color: rgba(37, 99, 235, 0.12);
+}
+
+/* Arabic - Green theme for contact items */
+[lang='ar'] .contactItem:hover {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.15);
+}
+
+[lang='ar'] .contactItem:active {
+  background: rgba(16, 185, 129, 0.12);
+}
+
+[lang='ar'][data-theme='light'] .contactItem:hover {
+  background: rgba(5, 150, 105, 0.06);
+  border-color: rgba(5, 150, 105, 0.12);
 }
 
 .socialLinks {
@@ -404,6 +472,27 @@
   background: rgba(37, 99, 235, 0.1);
   border-color: rgba(37, 99, 235, 0.2);
   color: var(--accent);
+}
+
+/* Arabic - Green theme for scroll indicator */
+[lang='ar'] .scrollIndicator {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+[lang='ar'] .scrollIndicator:hover {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+[lang='ar'][data-theme='light'] .scrollIndicator {
+  background: rgba(5, 150, 105, 0.06);
+  border: 1px solid rgba(5, 150, 105, 0.12);
+}
+
+[lang='ar'][data-theme='light'] .scrollIndicator:hover {
+  background: rgba(5, 150, 105, 0.1);
+  border-color: rgba(5, 150, 105, 0.2);
 }
 
 /* Responsive */
