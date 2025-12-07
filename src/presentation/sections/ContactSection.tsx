@@ -11,6 +11,7 @@ import {
   CheckCircle,
 } from 'lucide-react';
 import { PersonalInfo, SocialLink, CVDownload } from '@/domain/types';
+import { useLanguage } from '@/domain/context/LanguageContext';
 import SectionTitle from '../components/ui/SectionTitle';
 import SocialIcons from '../components/ui/SocialIcons';
 import Button from '../components/ui/Button';
@@ -27,6 +28,7 @@ export default function ContactSection({
   socialLinks,
   cvDownloads,
 }: ContactSectionProps) {
+  const { t } = useLanguage();
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent'>(
     'idle'
   );
@@ -49,14 +51,46 @@ export default function ContactSection({
     e.preventDefault();
     setFormStatus('sending');
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+      
+      if (!accessKey) {
+        throw new Error(t('contact.error.web3formsKey'));
+      }
 
-    setFormStatus('sent');
-    setFormData({ name: '', email: '', message: '' });
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `${t('contact.formSubject')} - ${formData.name}`,
+          from_name: formData.name,
+          email: formData.email,
+          message: `${t('contact.formNameLabel')}: ${formData.name}\n${t('contact.formEmailLabel')}: ${formData.email}\n\n${t('contact.formMessageLabel')}:\n${formData.message}`,
+          to_email: personalInfo.email,
+        }),
+      });
 
-    // Reset after 3 seconds
-    setTimeout(() => setFormStatus('idle'), 3000);
+      const result = await response.json();
+
+      if (result.success) {
+        setFormStatus('sent');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setFormStatus('idle'), 3000);
+      } else {
+        throw new Error(result.message || t('contact.error.formSubmit'));
+      }
+    } catch (error) {
+      console.error('Form gönderim hatası:', error);
+      alert(
+        error instanceof Error
+          ? error.message
+          : t('contact.error.sendFailed')
+      );
+      setFormStatus('idle');
+    }
   };
 
   return (
@@ -64,7 +98,7 @@ export default function ContactSection({
       <div className={styles.backgroundPattern} />
 
       <div className={styles.container}>
-        <SectionTitle title="İletişime Geçin" subtitle="Benimle Çalışmak İster misiniz?" />
+        <SectionTitle title={t('contact.title')} subtitle={t('contact.subtitle')} />
 
         <div className={styles.content}>
           {/* Contact Info */}
@@ -75,7 +109,7 @@ export default function ContactSection({
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className={styles.infoTitle}>İletişim Bilgileri</h3>
+            <h3 className={styles.infoTitle}>{t('contact.contactInfo')}</h3>
 
             <div className={styles.infoItems}>
               <motion.a
@@ -88,7 +122,7 @@ export default function ContactSection({
                   <Mail size={20} />
                 </div>
                 <div className={styles.infoContent}>
-                  <span className={styles.infoLabel}>E-posta</span>
+                  <span className={styles.infoLabel}>{t('contact.email')}</span>
                   <span className={styles.infoValue}>
                     {personalInfo.email}
                   </span>
@@ -107,7 +141,7 @@ export default function ContactSection({
                   <MapPin size={20} />
                 </div>
                 <div className={styles.infoContent}>
-                  <span className={styles.infoLabel}>Konum</span>
+                  <span className={styles.infoLabel}>{t('contact.location')}</span>
                   <span className={styles.infoValue}>
                     {personalInfo.location}
                   </span>
@@ -117,7 +151,7 @@ export default function ContactSection({
 
             {/* Social Links */}
             <div className={styles.socialSection}>
-              <h4 className={styles.socialTitle}>Sosyal Medya</h4>
+              <h4 className={styles.socialTitle}>{t('contact.socialMedia')}</h4>
               <SocialIcons links={socialLinks} size="lg" />
             </div>
 
@@ -125,7 +159,7 @@ export default function ContactSection({
             <div className={styles.cvSection}>
               <h4 className={styles.cvTitle}>
                 <FileText size={20} />
-                CV İndir
+                {t('contact.downloadCV')}
               </h4>
 
               <div className={styles.cvGrid}>
@@ -161,12 +195,12 @@ export default function ContactSection({
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className={styles.formCard}>
-              <h3 className={styles.formTitle}>Mesaj Gönderin</h3>
+              <h3 className={styles.formTitle}>{t('contact.sendMessage')}</h3>
 
               <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.formGroup}>
                   <label htmlFor="name" className={styles.label}>
-                    İsim
+                    {t('contact.name')}
                   </label>
                   <input
                     type="text"
@@ -175,7 +209,7 @@ export default function ContactSection({
                     value={formData.name}
                     onChange={handleInputChange}
                     className={styles.input}
-                    placeholder="İsminizi girin"
+                    placeholder={t('contact.namePlaceholder')}
                     required
                     disabled={formStatus === 'sending'}
                   />
@@ -183,7 +217,7 @@ export default function ContactSection({
 
                 <div className={styles.formGroup}>
                   <label htmlFor="email" className={styles.label}>
-                    E-posta
+                    {t('contact.emailLabel')}
                   </label>
                   <input
                     type="email"
@@ -192,7 +226,7 @@ export default function ContactSection({
                     value={formData.email}
                     onChange={handleInputChange}
                     className={styles.input}
-                    placeholder="E-posta adresinizi girin"
+                    placeholder={t('contact.emailPlaceholder')}
                     required
                     disabled={formStatus === 'sending'}
                   />
@@ -200,7 +234,7 @@ export default function ContactSection({
 
                 <div className={styles.formGroup}>
                   <label htmlFor="message" className={styles.label}>
-                    Mesaj
+                    {t('contact.message')}
                   </label>
                   <textarea
                     id="message"
@@ -208,7 +242,7 @@ export default function ContactSection({
                     value={formData.message}
                     onChange={handleInputChange}
                     className={styles.textarea}
-                    placeholder="Mesajınızı yazın..."
+                    placeholder={t('contact.messagePlaceholder')}
                     rows={5}
                     required
                     disabled={formStatus === 'sending'}
@@ -223,19 +257,19 @@ export default function ContactSection({
                   {formStatus === 'idle' && (
                     <>
                       <Send size={18} />
-                      Mesaj Gönder
+                      {t('contact.send')}
                     </>
                   )}
                   {formStatus === 'sending' && (
                     <>
                       <div className={styles.spinner} />
-                      Gönderiliyor...
+                      {t('contact.sending')}
                     </>
                   )}
                   {formStatus === 'sent' && (
                     <>
                       <CheckCircle size={18} />
-                      Gönderildi!
+                      {t('contact.sent')}
                     </>
                   )}
                 </button>
@@ -249,11 +283,10 @@ export default function ContactSection({
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <p className={styles.copyright}>
-            © {new Date().getFullYear()} {personalInfo.name}. Tüm hakları
-            saklıdır.
+            © {new Date().getFullYear()} {personalInfo.name}. {t('contact.rights')}
           </p>
           <p className={styles.madeWith}>
-          Next.js ile kodlanmıştır
+            {t('contact.madeWith')}
           </p>
         </div>
       </footer>

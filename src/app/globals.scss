@@ -129,6 +129,60 @@ body::before {
     radial-gradient(ellipse 60% 40% at 100% 100%, rgba(30, 64, 175, 0.04), transparent);
 }
 
+/* English - Softer background */
+[lang='en'] body::before {
+  opacity: 0.5;
+}
+
+[lang='en'][data-theme='dark'] body::before {
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.06), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(30, 64, 175, 0.04), transparent);
+}
+
+[lang='en'][data-theme='light'] body::before {
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(37, 99, 235, 0.03), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(30, 64, 175, 0.02), transparent);
+}
+
+/* Arabic - Green theme */
+[lang='ar'] {
+  --accent: #10b981;
+  --accent-secondary: #059669;
+  --accent-tertiary: #047857;
+  --accent-glow: rgba(16, 185, 129, 0.4);
+  --glass-border: rgba(16, 185, 129, 0.15);
+}
+
+[lang='ar'][data-theme='dark'] {
+  --accent: #10b981;
+  --accent-secondary: #059669;
+  --accent-tertiary: #047857;
+  --accent-glow: rgba(16, 185, 129, 0.4);
+  --glass-border: rgba(16, 185, 129, 0.15);
+}
+
+[lang='ar'][data-theme='light'] {
+  --accent: #059669;
+  --accent-secondary: #047857;
+  --accent-tertiary: #065f46;
+  --accent-glow: rgba(5, 150, 105, 0.2);
+  --glass-border: rgba(5, 150, 105, 0.15);
+}
+
+[lang='ar'] body::before {
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.12), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(5, 150, 105, 0.08), transparent);
+}
+
+[lang='ar'][data-theme='light'] body::before {
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(5, 150, 105, 0.06), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(4, 120, 87, 0.04), transparent);
+}
+
 /* Links */
 a {
   color: inherit;
@@ -168,6 +222,17 @@ button {
 
 [data-theme='light'] ::selection {
   background: rgba(37, 99, 235, 0.2);
+  color: var(--text-primary);
+}
+
+/* Arabic - Green selection */
+[lang='ar'][data-theme='dark'] ::selection {
+  background: rgba(16, 185, 129, 0.3);
+  color: var(--text-primary);
+}
+
+[lang='ar'][data-theme='light'] ::selection {
+  background: rgba(5, 150, 105, 0.2);
   color: var(--text-primary);
 }
 

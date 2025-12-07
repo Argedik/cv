@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { PersonalInfo, SocialLink } from '@/domain/types';
 import SocialIcons from '../components/ui/SocialIcons';
 import styles from './HeroSection.module.scss';
+import { useLanguage } from '@/domain/context/LanguageContext';
 
 interface HeroSectionProps {
   personalInfo: PersonalInfo;
@@ -17,6 +18,7 @@ export default function HeroSection({
   personalInfo,
   socialLinks,
 }: HeroSectionProps) {
+  const { t } = useLanguage(); // Çeviri fonksiyonunu kullanmak için
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -66,7 +68,7 @@ export default function HeroSection({
             >
               <span className={styles.title}>{personalInfo.title}</span>
               <span className={styles.titleDivider}>&</span>
-              <span className={styles.subtitle}>{personalInfo.subtitle}</span>
+              <span className={styles.subtitle}>{t('hero.subtitle')}</span>
             </motion.div>
 
             <motion.p
@@ -74,8 +76,9 @@ export default function HeroSection({
               initial={{ opacity: 0, y: 30 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
+              style={{ whiteSpace: 'pre-line' }}
             >
-              {personalInfo.description}
+              {t('hero.description')}
             </motion.p>
 
             <motion.a
@@ -128,7 +131,7 @@ export default function HeroSection({
                 </div>
               </div>
               <div className={styles.floatingBadge}>
-                <span className={styles.badgeText}>Available for work</span>
+                <span className={styles.badgeText}>{t('hero.available')}</span>
                 <span className={styles.badgeDot} />
               </div>
             </div>
@@ -146,7 +149,7 @@ export default function HeroSection({
           transition={{ duration: 0.6, delay: 1 }}
           aria-label="Scroll down"
         >
-          <span>Keşfet</span>
+          <span>{t('hero.explore')}</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}

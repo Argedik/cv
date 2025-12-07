@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, X } from 'lucide-react';
 import Image from 'next/image';
 import { Project } from '@/domain/types';
+import { useLanguage } from '@/domain/context/LanguageContext';
 import SectionTitle from '../components/ui/SectionTitle';
 import Button from '../components/ui/Button';
 import styles from './ProjectsSection.module.scss';
@@ -14,6 +15,7 @@ interface ProjectsSectionProps {
 }
 
 export default function ProjectsSection({ projects }: ProjectsSectionProps) {
+  const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
 
@@ -39,8 +41,8 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
 
       <div className={styles.container}>
         <SectionTitle
-          title="Projelerim"
-          subtitle="Çalışmalarım"
+          title={t('projects.title')}
+          subtitle={t('projects.subtitle')}
         />
 
         {/* Project Cards */}
@@ -59,7 +61,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                 <div className={styles.cardImage}>
                   <Image
                     src={project.image}
-                    alt={project.title}
+                    alt={t(`project.${project.id}.title`)}
                     fill
                     style={{ objectFit: 'cover', objectPosition: 'top' }}
                     onError={(e) => {
@@ -68,16 +70,16 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                     }}
                   />
                   <div className={styles.cardOverlay}>
-                    <span className={styles.viewMore}>Detayları Gör</span>
+                    <span className={styles.viewMore}>{t('projects.viewDetails')}</span>
                   </div>
                 </div>
                 {project.featured && (
-                  <span className={styles.featuredBadge}>Öne Çıkan</span>
+                  <span className={styles.featuredBadge}>{t('projects.featured')}</span>
                 )}
               </div>
               <div className={styles.cardContent}>
-                <h3 className={styles.cardTitle}>{project.title}</h3>
-                <p className={styles.cardDescription}>{project.description}</p>
+                <h3 className={styles.cardTitle}>{t(`project.${project.id}.title`)}</h3>
+                <p className={styles.cardDescription}>{t(`project.${project.id}.description`)}</p>
                 <div className={styles.cardTechs}>
                   {project.technologies.slice(0, 3).map((tech) => (
                     <span key={tech} className={styles.cardTech}>
@@ -116,7 +118,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
               <button
                 className={styles.closeButton}
                 onClick={closeModal}
-                aria-label="Kapat"
+                aria-label={t('projects.close')}
               >
                 <X size={24} />
               </button>
@@ -124,20 +126,21 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
               <div className={styles.modalImage}>
                 <Image
                   src={selectedProject.image}
-                  alt={selectedProject.title}
+                  alt={t(`project.${selectedProject.id}.title`)}
                   fill
                   style={{ objectFit: 'cover', objectPosition: 'top' }}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
+                    {/*ihtiyaç olursa popup için ayrı resim eklenebilir*/}
                     target.src = '/images/project-placeholder.jpg';
                   }}
                 />
               </div>
 
               <div className={styles.modalContent}>
-                <h2 className={styles.modalTitle}>{selectedProject.title}</h2>
+                <h2 className={styles.modalTitle}>{t(`project.${selectedProject.id}.title`)}</h2>
                 <p className={styles.modalDescription}>
-                  {selectedProject.description}
+                  {t(`project.${selectedProject.id}.description`)}
                 </p>
 
                 <div className={styles.modalTechs}>
@@ -155,7 +158,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                       variant="primary"
                       icon={<ExternalLink size={18} />}
                     >
-                      Canlı Demo
+                      {t('projects.liveDemo')}
                     </Button>
                   )}
                   {selectedProject.githubUrl && (

@@ -3,8 +3,6 @@
 export interface PersonalInfo {
   name: string;
   title: string;
-  subtitle: string;
-  description: string;
   avatar: string;
   location: string;
   email: string;
@@ -29,17 +27,11 @@ export interface Experience {
 
 export interface Project {
   id: string;
-  title: string;
-  description: string;
   image: string;
   technologies: string[];
   liveUrl?: string;
   githubUrl?: string;
   featured: boolean;
-  coordinates?: {
-    lat: number;
-    lng: number;
-  };
 }
 
 export interface CVDownload {
