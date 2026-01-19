@@ -149,7 +149,7 @@ const translationData: Record<Language, Record<string, string>> = {
 		'hero.available': 'Available for work',
 		'hero.subtitle': 'E-commerce, Accounting and Finance',
 		'hero.description':
-			'Hello! \n I have gained extensive experience developing applications across a broad range of technologies as a Full-Stack and Front-End developer with companies like AlbarakaTech Global and Akinon. I have focused on creating user-friendly interfaces and enhancing performance optimizations, managing projects for various brands, and exploring different data modeling and coding techniques. I am detail-oriented and committed to coding standards; I prioritize team harmony while also completing tasks independently. Lastly, I continuously improve my technical skills through both domestic and international resources.\nThank you for your consideration.\nSincerely,',
+			'Hello! \n As a Full Stack Developer, I have built enterprise applications for banking/finance projects and gained frontend experience in e-commerce. I am also focusing on developing efficiency-driven solutions by taking training in workflow automation with n8n and AI integrations. I am open to opportunities for full stack roles. \nThank you for your consideration.\nSincerely,',
 		'exp.title': 'My Experience',
 		'exp.subtitle': 'Career Journey',
 		// Experience 1 - AlbarakaTech Global
@@ -264,7 +264,7 @@ const translationData: Record<Language, Record<string, string>> = {
 		'hero.available': 'متاح للعمل',
 		'hero.subtitle': 'التجارة الإلكترونية والمحاسبة والمالية',
 		'hero.description':
-			'مرحباً! \n لقد اكتسبت خبرة واسعة في تطوير التطبيقات عبر مجموعة واسعة من التقنيات كمطور Full-Stack و Front-End مع شركات مثل AlbarakaTech Global و Akinon. ركزت على إنشاء واجهات سهلة الاستخدام وتحسين تحسينات الأداء، وإدارة المشاريع لعلامات تجارية مختلفة، واستكشاف تقنيات نمذجة البيانات والبرمجة المختلفة. أنا منتبه للتفاصيل وملتزم بمعايير البرمجة؛ أعطي الأولوية للانسجام الجماعي بينما أكمل المهام بشكل مستقل أيضاً. أخيراً، أحسن باستمرار مهاراتي التقنية من خلال الموارد المحلية والدولية. \n شكراً لاهتمامك. \n مع أطيب التحيات،',
+			'مرحباً! \n بصفتي مطوّرًا شاملاً (Full Stack Developer)، قمت بتطوير تطبيقات مؤسسية ضمن مشاريع في مجال البنوك والتمويل، كما اكتسبت خبرة في تطوير الواجهات الأمامية لمشاريع التجارة الإلكترونية. كما أركّز على تطوير حلول تُحسّن الكفاءة من خلال تلقي تدريبات على أتمتة سير العمل باستخدام n8n ودمج تقنيات الذكاء الاصطناعي. أنا منفتح على فرص العمل في وظائف التطوير الشامل (Full Stack). \n شكراً لاهتمامك. \n مع أطيب التحيات،',
 		'exp.title': 'خبراتي',
 		'exp.subtitle': 'رحلتي المهنية',
 		// Experience 1 - AlbarakaTech Global
