@@ -201,7 +201,7 @@ export const portfolioData: PortfolioData = {
 		},
 		{
 			id: '7',
-			image: '/images/editor-portfolio.png',
+			image: '/images/projects/editor-portfolio.png',
 			technologies: ['Next JS', 'TypeScript', 'Module Scss'],
 			featured: true,
 		},
