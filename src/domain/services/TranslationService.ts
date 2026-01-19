@@ -111,6 +111,14 @@ const translationData: Record<Language, Record<string, string>> = {
 		'project.6.title': 'Siyer Eşleştirme',
 		'project.6.description':
 			'Eğitim platformu. İnteraktif öğrenme ve eşleştirme oyunu.',
+		// Project 7 - Editor Portfolio
+		'project.7.title': 'Editor Portfolio',
+		'project.7.description':
+			'Editör ve içerik üreticileri için portfolyo sitesi.',
+		// Project 8 - Online Medrese
+		'project.8.title': 'Online Medrese',
+		'project.8.description':
+			'Monorepo mimarisiyle geliştirilen online eğitim platformu.',
 		'contact.title': 'İletişime Geçin',
 		'contact.subtitle': 'Benimle Çalışmak İster misiniz?',
 		'contact.contactInfo': 'İletişim Bilgileri',
@@ -226,6 +234,14 @@ const translationData: Record<Language, Record<string, string>> = {
 		'project.6.title': 'Siyer Matching',
 		'project.6.description':
 			'Educational platform. Interactive learning and matching game.',
+		// Project 7 - Editor Portfolio
+		'project.7.title': 'Editor Portfolio',
+		'project.7.description':
+			'A portfolio website for editors and content creators.',
+		// Project 8 - Online Medrese
+		'project.8.title': 'Online Medrese',
+		'project.8.description':
+			'An online learning platform built with a monorepo architecture.',
 		'contact.title': 'Get in Touch',
 		'contact.subtitle': 'Do You Want to Work with Me?',
 		'contact.contactInfo': 'Contact Information',
@@ -340,6 +356,13 @@ const translationData: Record<Language, Record<string, string>> = {
 		// Project 6 - Siyer Eşleştirme
 		'project.6.title': 'مطابقة السيرة',
 		'project.6.description': 'منصة تعليمية. التعلم التفاعلي ولعبة المطابقة.',
+		// Project 7 - Editor Portfolio
+		'project.7.title': 'Editor Portfolio',
+		'project.7.description':
+			'موقع بورتفوليو للمحررين وصنّاع المحتوى، يركز على واجهة حديثة وعرض الأعمال بسرعة وبشكل منظم.',
+		// Project 8 - Online Medrese
+		'project.8.title': 'المدرسة الإلكترونية',
+		'project.8.description': 'منصة تعليمية عبر الإنترنت ببنية monorepo.',
 		'contact.title': 'تواصل معي',
 		'contact.subtitle': 'هل تريد العمل معي؟',
 		'contact.contactInfo': 'معلومات الاتصال',
